@@ -1,3 +1,12 @@
+"""
+
+Binary Search Tree in Python
+
+Author : Phaneendhra
+
+"""
+from collections import deque           #for level order traversal
+
 class Tree:
 
     def __init__(self,value):
@@ -112,6 +121,33 @@ def findnode(root,num):
 
     print(f"{num} is not present in Binary Search Tree")
 
+# Function to print level order traversal of a given binary tree
+def levelOrderTraversal(root):
+
+    # base case
+    if not root:
+        return
+
+    # create an empty queue and enqueue the root node
+    queue = deque()
+    queue.append(root)
+
+    # loop till queue is empty
+    while queue:
+
+        # process each node in the queue and enqueue their
+        # non-empty left and right child
+        curr = queue.popleft()
+
+        print(curr.value, end=' ')
+
+        if curr.left:
+            queue.append(curr.left)
+
+        if curr.right:
+            queue.append(curr.right)
+
+
 if __name__ == '__main__':
 
     root = Tree(7)
@@ -121,7 +157,8 @@ if __name__ == '__main__':
     insert(root,8)
     insert(root,2)
     insert(root,11)
-    inorder(root)       #inorder function
-    postorder(root)     #postorder function
-    preorder(root)      #preorder function
-    findnode(root,9)    #findnode function
+    inorder(root)                       #inorder function
+    postorder(root)                     #postorder function
+    preorder(root)                      #preorder function
+    findnode(root,9)                    #findnode function
+    levelOrderTraversal(root)           #level order traversal function
