@@ -86,6 +86,32 @@ def postorder(root):
     postorder(root.left)
     postorder(root.right)
     print(root.value,end = " ")
+
+def findnode(root,num):
+
+    """
+
+    Name : findnode()
+    Arguments : root node of tree, num:int
+    Desp : Sucess,Searches for the node present in Binary Search Tree,else, Failure
+    Rtype: None
+
+    """
+    if root is None:
+        print("Tree is empty")
+        return
+    tmp = root
+    while(tmp):
+        if num == tmp.value:
+            print(f"{num} is present in Binary Search Tree")
+            return
+        if num < tmp.value:
+            tmp = tmp.left
+        else:
+            tmp = tmp.right
+
+    print(f"{num} is not present in Binary Search Tree")
+
 if __name__ == '__main__':
 
     root = Tree(7)
@@ -95,6 +121,7 @@ if __name__ == '__main__':
     insert(root,8)
     insert(root,2)
     insert(root,11)
-    inorder(root)       #inorder
-    postorder(root)     #postorder
-    preorder(root)      #preorder
+    inorder(root)       #inorder function
+    postorder(root)     #postorder function
+    preorder(root)      #preorder function
+    findnode(root,9)    #findnode function
