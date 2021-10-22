@@ -148,6 +148,44 @@ def levelOrderTraversal(root):
             queue.append(curr.right)
 
 
+def get_minimum_node(root):
+
+    """
+    Name : get_minimum_node()
+    Desp : Finds the Minimum value from BST
+    Rtype : None
+
+    """
+
+    tmp = root
+    if tmp:
+        while(tmp.left):
+            tmp = tmp.left
+    else:
+        print("Tree is Empty!")
+        return
+    print(f"Minimum node from BST : {tmp.value}")
+    return
+
+def get_maximum_node(root):
+
+    """
+    Name : get_maximum_node()
+    Desp : Finds the Maximum value from BST
+    Rtype : None
+
+    """
+
+    tmp = root
+    if tmp:
+        while(tmp.right):
+            tmp = tmp.right
+    else:
+        print("Tree is Empty!")
+        return
+    print(f"Maximum node from BST : {tmp.value}")
+    return
+
 
 def maximum(root):
 
@@ -174,7 +212,7 @@ def deletenode(root,num):
     Name : deletenode()
     Arguments : root: rootnode of the tree, num:int
     Description : deletes the node if found in Binary Search Tree
-    Rtype : Updated Tree 
+    Rtype : Updated Tree
 
     """
 
@@ -223,10 +261,12 @@ if __name__ == '__main__':
     insert(root,2)
     insert(root,11)
     insert(root,15)
+    get_minimum_node(root)
+    get_maximum_node(root)
     #inorder(root)                       #inorder function
     #postorder(root)                     #postorder function
     #preorder(root)                      #preorder function
     #findnode(root,9)                    #findnode function
     #levelOrderTraversal(root)           #level order traversal function
-    root = deletenode(root,9)
+    root = deletenode(root,15)
     inorder(root)
