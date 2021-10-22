@@ -253,6 +253,20 @@ def deletenode(root,num):
 
     return root
 
+def delete_tree(root):
+
+    """
+
+    Name : delete_tree()
+    Arguments : root: rootnode of the tree
+    Description : Deletes entire Binary Search Tree
+    Rtype : None
+
+    """
+
+    root.value = root.left = root.right = None
+    #return root
+
 if __name__ == '__main__':
 
     root = Tree(7)
@@ -265,10 +279,11 @@ if __name__ == '__main__':
     insert(root,15)
     get_minimum_node(root)
     get_maximum_node(root)
-    #inorder(root)                       #inorder function
-    #postorder(root)                     #postorder function
-    #preorder(root)                      #preorder function
-    #findnode(root,9)                    #findnode function
-    #levelOrderTraversal(root)           #level order traversal function
+    #inorder(root)                       # inorder function
+    #postorder(root)                     # postorder function
+    #preorder(root)                      # preorder function
+    #findnode(root,9)                    # findnode function
+    #levelOrderTraversal(root)           # level order traversal function
     root = deletenode(root,9)
     inorder(root)
+    delete_tree(root)                    # Delete entire Binary Search Tree
