@@ -187,21 +187,21 @@ def get_maximum_node(root):
     return
 
 
-def maximum(root):
+def minimum(root):
 
     """
 
-    Name : maximum()
+    Name : minimum()
     Arguments : root: rootnode of the tree
-    Description : Get maximum value from the tree for deletion of a node in tree
+    Description : Get minimum value from the right sub tree for deletion of a node in tree
     Rtype : node with max value
 
     """
 
     current = root
 
-    while(current.right!= None):
-        current = current.right
+    while(current.left!= None):
+        current = current.left
 
     return current
 
@@ -217,6 +217,7 @@ def deletenode(root,num):
     """
 
     if root == None:        # base root node if it is None
+        print("Node Not Found/Tree is Empty")
         return root
 
     if num < root.value:
@@ -241,13 +242,14 @@ def deletenode(root,num):
                 return temp
 
             # if neither the left or right is not None
-            # here we can replace the node with minimum value of the left subtree
-            # or else with the maximum value of the right sub tree
+            # here we can replace the node with maximum value of the left subtree
+            # or else with the minimum value of the right sub tree
 
-            temp = maximum(root.right)      #get maximum value from right sub tree
-            root.value = temp.value         #over ride the current node value with maximum value of its right sub tree
-            root.right = deletenode(root.right,temp.value)          #now delete the maximum value from right subtree
-                                                                    #as current node value got replcaed with maximum value of right subtree
+            temp = minimum(root.right)                              #get maximum value from right sub tree
+            root.value = temp.value                                 #over ride the current node value with minimum value of its right sub tree
+            root.right = deletenode(root.right,temp.value)          #now delete the minimum value from right subtree
+                                                                    #as current node value got replcaed with minimum value of right subtree
+
 
     return root
 
@@ -268,5 +270,5 @@ if __name__ == '__main__':
     #preorder(root)                      #preorder function
     #findnode(root,9)                    #findnode function
     #levelOrderTraversal(root)           #level order traversal function
-    root = deletenode(root,15)
+    root = deletenode(root,9)
     inorder(root)
