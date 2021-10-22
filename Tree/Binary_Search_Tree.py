@@ -9,7 +9,7 @@ from collections import deque           #for level order traversal
 
 class Tree:
 
-    def __init__(self,value):
+    def __init__(self,value=None):
         self.value = value
         self.left = None
         self.right = None
@@ -26,7 +26,7 @@ def insert(root,num):
     """
 
     if num == root.value:
-        print("Cannot insert duplciate values")
+        print("Cannot insert duplicate values")
         return
 
     if num < root.value:
@@ -102,7 +102,7 @@ def findnode(root,num):
 
     Name : findnode()
     Arguments : root node of tree, num:int
-    Desp : Sucess,Searches for the node present in Binary Search Tree,else, Failure
+    Desp : Success,Searches for the node present in Binary Search Tree,else, Failure
     Rtype: None
 
     """
@@ -148,6 +148,71 @@ def levelOrderTraversal(root):
             queue.append(curr.right)
 
 
+
+def maximum(root):
+
+    """
+
+    Name : maximum()
+    Arguments : root: rootnode of the tree
+    Description : Get maximum value from the tree for deletion of a node in tree
+    Rtype : node with max value
+
+    """
+
+    current = root
+
+    while(current.right!= None):
+        current = current.right
+
+    return current
+
+def deletenode(root,num):
+
+    """
+
+    Name : deletenode()
+    Arguments : root: rootnode of the tree, num:int
+    Description : deletes the node if found in Binary Search Tree
+    Rtype : Updated Tree 
+
+    """
+
+    if root == None:        # base root node if it is None
+        return root
+
+    if num < root.value:
+        root.left =  deletenode(root.left,num)
+
+    elif num > root.value:
+        root.right = deletenode(root.right,num)
+
+    else:
+        if num == root.value:
+
+            # to check whether the left or right node is None or not
+
+            if root.left is None:
+                temp = root.right
+                root = None
+                return temp
+
+            elif root.right is None:
+                temp = root.left
+                root = None
+                return temp
+
+            # if neither the left or right is not None
+            # here we can replace the node with minimum value of the left subtree
+            # or else with the maximum value of the right sub tree
+
+            temp = maximum(root.right)      #get maximum value from right sub tree
+            root.value = temp.value         #over ride the current node value with maximum value of its right sub tree
+            root.right = deletenode(root.right,temp.value)          #now delete the maximum value from right subtree
+                                                                    #as current node value got replcaed with maximum value of right subtree
+
+    return root
+
 if __name__ == '__main__':
 
     root = Tree(7)
@@ -157,8 +222,11 @@ if __name__ == '__main__':
     insert(root,8)
     insert(root,2)
     insert(root,11)
-    inorder(root)                       #inorder function
-    postorder(root)                     #postorder function
-    preorder(root)                      #preorder function
-    findnode(root,9)                    #findnode function
-    levelOrderTraversal(root)           #level order traversal function
+    insert(root,15)
+    #inorder(root)                       #inorder function
+    #postorder(root)                     #postorder function
+    #preorder(root)                      #preorder function
+    #findnode(root,9)                    #findnode function
+    #levelOrderTraversal(root)           #level order traversal function
+    root = deletenode(root,9)
+    inorder(root)
