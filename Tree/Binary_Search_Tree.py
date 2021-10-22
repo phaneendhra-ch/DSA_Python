@@ -133,20 +133,21 @@ def levelOrderTraversal(root):
     queue.append(root)
 
     # loop till queue is empty
+
     while queue:
 
         # process each node in the queue and enqueue their
         # non-empty left and right child
+
         curr = queue.popleft()
 
-        print(curr.value, end=' ')
+        #print(curr.value, end=' ')
 
         if curr.left:
             queue.append(curr.left)
 
         if curr.right:
             queue.append(curr.right)
-
 
 def get_minimum_node(root):
 
@@ -267,6 +268,18 @@ def delete_tree(root):
     root.value = root.left = root.right = None
     #return root
 
+def height_tree(root):
+
+    if root is None:
+        return 0
+    else:
+        # Recursively call height of each node
+        leftAns = height_tree(root.left)
+        rightAns = height_tree(root.right)
+
+        # Return max(leftHeight, rightHeight) at each iteration
+        return max(leftAns, rightAns) + 1
+
 if __name__ == '__main__':
 
     root = Tree(7)
@@ -279,11 +292,12 @@ if __name__ == '__main__':
     insert(root,15)
     get_minimum_node(root)
     get_maximum_node(root)
-    #inorder(root)                       # inorder function
-    #postorder(root)                     # postorder function
-    #preorder(root)                      # preorder function
-    #findnode(root,9)                    # findnode function
-    #levelOrderTraversal(root)           # level order traversal function
+    #inorder(root)                          # inorder function
+    #postorder(root)                        # postorder function
+    #preorder(root)                         # preorder function
+    #findnode(root,9)                       # findnode function
+    levelOrderTraversal(root)               # level order traversal function
     root = deletenode(root,9)
     inorder(root)
-    delete_tree(root)                    # Delete entire Binary Search Tree
+    print(f"\nHeight of Binary Search Tree : {height_tree(root)}")
+    #delete_tree(root)                      # Delete entire Binary Search Tree
