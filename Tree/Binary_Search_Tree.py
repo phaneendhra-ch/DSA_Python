@@ -141,7 +141,7 @@ def levelOrderTraversal(root):
 
         curr = queue.popleft()
 
-        #print(curr.value, end=' ')
+        print(curr.value, end=' ')
 
         if curr.left:
             queue.append(curr.left)
@@ -280,6 +280,50 @@ def height_tree(root):
         # Return max(leftHeight, rightHeight) at each iteration
         return max(leftAns, rightAns) + 1
 
+
+def leftViewUtil(root, level, max_level):
+
+    # Base Case
+    if root is None:
+        return
+
+    # If this is the first node of its level
+    if (max_level[0] < level):
+        print(f"{root.value}",end = " ")
+        max_level[0] = level
+
+    # Recur for left and right subtree
+    leftViewUtil(root.left, level + 1, max_level)
+    leftViewUtil(root.right, level + 1, max_level)
+
+
+# A wrapper over leftViewUtil()
+def leftView(root):
+    max_level = [0]
+    leftViewUtil(root, 1, max_level)
+
+
+def RightViewUtil(root, level, max_level):
+
+    # Base Case
+    if root is None:
+        return
+
+    # If this is the first node of its level
+    if (max_level[0] < level):
+        print(f"{root.value}",end = " ")
+        max_level[0] = level
+
+    # Recur for left and right subtree
+    leftViewUtil(root.right, level + 1, max_level)
+    leftViewUtil(root.left, level + 1, max_level)
+
+# A wrapper over leftViewUtil()
+def RightView(root):
+    max_level = [0]
+    RightViewUtil(root, 1, max_level)
+
+
 if __name__ == '__main__':
 
     root = Tree(7)
@@ -296,8 +340,10 @@ if __name__ == '__main__':
     #postorder(root)                        # postorder function
     #preorder(root)                         # preorder function
     #findnode(root,9)                       # findnode function
-    levelOrderTraversal(root)               # level order traversal function
-    root = deletenode(root,9)
-    inorder(root)
+    #levelOrderTraversal(root)               # level order traversal function
+    #root = deletenode(root,9)
+    #inorder(root)
     print(f"\nHeight of Binary Search Tree : {height_tree(root)}")
     #delete_tree(root)                      # Delete entire Binary Search Tree
+    leftView(root)
+    RightView(root)
