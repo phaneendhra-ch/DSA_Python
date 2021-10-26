@@ -1,19 +1,19 @@
+
 Binary Search Tree
     Operations :
 
-    insertion </br>
-    deletion </br>
-    searching  </br>
-    levelOrderTraversal </br>
-    PreOrder Traversal </br>
-    PostOrder Traversal </br>
-    InOrder Traversal </br>
-    GetMinimumNode </br>
-    GetMaximumNode </br>
-    LeftViewTree </br>
-    RightViewTree </br>
+    insertion
+    deletion
+    searching  
+    levelOrderTraversal
+    PreOrder Traversal
+    PostOrder Traversal
+    InOrder Traversal
+    GetMinimumNode
+    GetMaximumNode
+    LeftViewTree
+    RightViewTree 
 
 -> Check whether Tree is BST or Not
-
 
 Author : Phaneendhra
