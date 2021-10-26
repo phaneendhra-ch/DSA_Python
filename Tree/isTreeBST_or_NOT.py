@@ -48,7 +48,7 @@ def inorder(root,li:list):
 
     Name : inorder()
     Arguments : root node of tree, li: list
-    Desp : If list is iin sorted order then tree is BST, else False
+    Desp : If list is in sorted order then tree is BST, else False
     Rtype: True/False
 
     """
