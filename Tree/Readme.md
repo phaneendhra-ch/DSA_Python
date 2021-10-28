@@ -26,4 +26,6 @@ Binary Search Tree
 
 -> Check whether Tree is BST or Not
 
+-> Binary Heap
+
 Author : Phaneendhra
