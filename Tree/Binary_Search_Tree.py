@@ -315,8 +315,8 @@ def RightViewUtil(root, level, max_level):
         max_level[0] = level
 
     # Recur for left and right subtree
-    leftViewUtil(root.right, level + 1, max_level)
-    leftViewUtil(root.left, level + 1, max_level)
+    RightViewUtil(root.right, level + 1, max_level)
+    RightViewUtil(root.left, level + 1, max_level)
 
 # A wrapper over leftViewUtil()
 def RightView(root):
