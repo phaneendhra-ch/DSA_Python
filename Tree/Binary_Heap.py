@@ -220,6 +220,17 @@ def extractnode(root):
         return extractnode                                       # return the removed(Extracted) value
 
 
+def DeleteBinaryHeap(root):
+
+    """
+
+    Name : DeleteBinaryHeap()
+    Arguments : root : root if the tree
+    Desp : Deletes Entire Binary Heap
+
+    """
+    root.customlist = None
+
 if __name__ == '__main__':
 
     my_binary_heap = BinaryHeap(5)
@@ -232,4 +243,5 @@ if __name__ == '__main__':
     extractnode(my_binary_heap)                     # remove the first element from the tree
     levelOrderTraversal(my_binary_heap)             # print levelorder traversal
 
+    DeleteBinaryHeap(my_binary_heap)                # Delete entire binary heap
     #print(my_binary_heap.maxsize)
