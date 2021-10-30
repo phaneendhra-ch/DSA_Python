@@ -151,6 +151,75 @@ def insertnode(root,data):
         heapifyBinaryTree(root,root.heapsize)           # call heapify method if Binary Heap is not in order.
         return
 
+
+def HeapifyTreeExtract(root,index):
+
+    """
+
+    Here the tree is of Minimum Binary Heap
+
+    Name  : HeapifyTreeExtract()
+    Arguments : root: root of the tree and index
+    Desp : Heapifies the tree until it meets Minimum Binray Heap Tree condition
+    Rtype : None
+
+    """
+
+    left_index = 2*index        # formula to find left child index
+    right_index = 2*index + 1   # formula to find right child index
+    swap_child = 0
+
+    if root.heapsize < left_index:          # Here the node to be removed doesnt have any child nodes
+        return
+
+    elif root.heapsize == left_index:
+
+        #if the node has only one child
+        # here if the node is greater than the child node
+        # then both the child node and parent node will be swapped (by excecuting below if condition)
+
+        if root.customlist[index] > root.customlist[left_index]:
+            temp = root.customlist[index]
+            root.customlist[index]= root.customlist[left_index]
+            root.customlist[left_index] = temp
+
+    else:
+        #if node has two childrens, then swap the node with child node of minimum value
+        if root.customlist[left_index] < root.customlist[right_index]:
+            swap_child = left_index
+        else:
+            swap_child = right_index
+
+        # here if the index node is greater than the minimum node of its children
+        # then swap child node with parent node
+
+        if root.customlist[index] > root.customlist[swap_child]:
+            temp = root.customlist[index]
+            root.customlist[index]= root.customlist[swap_child]
+            root.customlist[swap_child] = temp
+
+    HeapifyTreeExtract(root, swap_child)            # call heapify method if Binary Heap is not in order.
+
+def extractnode(root):
+
+    """
+    Name  : extractnode()
+    Arguments : root : root if the tree
+    Desp : Extracts/deletes the first node from the tree
+
+    """
+
+    if root.heapsize == 0 :
+        return
+    else:
+        extractnode = root.customlist[1]                         # First node to be extracted, in Binary heap first node index starts with 1
+        root.customlist[1] = root.customlist[root.heapsize]      # assign last node to the first node
+        root.customlist[root.heapsize] = None                    # assign last node value as None
+        root.heapsize -= 1                                       # Decrease the size of the binary heap by 1, as we removed the last node
+        HeapifyTreeExtract(root,1)                               # call heapifyextract if the tree doesnt satisfy minimum binary heap condition
+        return extractnode                                       # return the removed(Extracted) value
+
+
 if __name__ == '__main__':
 
     my_binary_heap = BinaryHeap(5)
@@ -158,5 +227,9 @@ if __name__ == '__main__':
     insertnode(my_binary_heap,2)
     insertnode(my_binary_heap,1)
     insertnode(my_binary_heap,4)
-    levelOrderTraversal(my_binary_heap)
+    levelOrderTraversal(my_binary_heap)             # print levelorder traversal
+
+    extractnode(my_binary_heap)                     # remove the first element from the tree
+    levelOrderTraversal(my_binary_heap)             # print levelorder traversal
+
     #print(my_binary_heap.maxsize)
