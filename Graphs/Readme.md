@@ -11,3 +11,6 @@ Graph Data Structure in Python
        -> Uses Stack Data Structure
 
   Topological Sorting in Graph using Stack
+
+  Single Source Shortest Path(SSSP)
+    -> Using BFS
