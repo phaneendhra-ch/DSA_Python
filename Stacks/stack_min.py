@@ -25,6 +25,9 @@ class StackList:
             self.minimum.append(num)
             self.stacklist.append(num)
         else:
+            if num in self.stacklist:
+                print("Cannot insert duplicate values")
+                return
             if (num < self.minimum[-1]):
                 self.minimum.append(num)
             self.stacklist.append(num)
