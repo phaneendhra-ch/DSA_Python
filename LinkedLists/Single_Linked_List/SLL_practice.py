@@ -238,6 +238,34 @@ class SLinkedList:
         print("Linked List Reversed")
 
 
+    def remove_duplicates(self):
+
+        """
+
+        Name : remove_duplicates()
+        Desc : Removes Duplicate Nodes from Single linked list
+        Rtype : None
+        Time Complexity : O(n^2)
+
+        """
+
+        tmp = self.head                     # temporary node
+
+        while(tmp):                         # iterate from starting node
+
+            current = tmp                   # create tmp instance
+
+            while(current.link!=None):      # iterate until current.link is not None
+
+                if (tmp.value == current.link.value):       # if tmp.value == current.link.value
+                                                                    # here if current node value(tmp) is equal to current node value
+                                                                    # then break the link as assign current.link to current.link.link
+                    current.link = current.link.link
+                else:                                       # else, assign current node to its next node
+                    current = current.link
+
+            tmp = tmp.link                                  # iterate through next node
+
 singleLinkedList = SLinkedList()  # creating LL object
 
 #Insertion operations
@@ -245,7 +273,11 @@ singleLinkedList.insert_at_beginning(50)
 singleLinkedList.insert_at_end(60)
 singleLinkedList.insert_at_end(70)
 singleLinkedList.insert_at_end(80)
+singleLinkedList.insert_at_end(60)
+singleLinkedList.insert_at_end(70)
+singleLinkedList.insert_at_end(80)
 singleLinkedList.insert_in_btw(100,3)
+singleLinkedList.remove_duplicates()
 singleLinkedList.traverseSLL()
 #singleLinkedList.search_value_node(80)
 
