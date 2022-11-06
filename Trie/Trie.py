@@ -37,7 +37,7 @@ class Trie:
             if ch not in cur.children:
                 return False
             
-            ch = cur.children[ch]
+            cur = cur.children[ch]
         
         return True
 
