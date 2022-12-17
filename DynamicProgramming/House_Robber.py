@@ -26,7 +26,7 @@ def max_amount_td(houses : list ,current_index : int,dict_ : dict):
 
     else:
 
-        if houses[current_index] not in dict_:
+        if current_index not in dict_:
             steal_first_house = houses[current_index] + max_amount_td(houses,current_index+2,dict_)  # here we are considering the first house and calling the function by passing alternate index node
             skip_first_house = max_amount_td(houses,current_index+1,dict_)                           # here we are starting from the second index value
 
